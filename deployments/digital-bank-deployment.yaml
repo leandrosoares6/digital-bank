@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: digital-bank
+  labels:
+    app: digital-bank
+spec:
+  selector:
+    matchLabels:
+      app: digital-bank
+  template:
+    metadata:
+      labels:
+        app: digital-bank
+    spec:
+      containers:
+        - image: leandro/digital-bank:latest
+          name: digital-bank
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+
+  
