@@ -1,0 +1,43 @@
+version: '3.7'
+
+# Define services
+services:
+  app:
+    # Configuration for building the docker image for the app service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - mysql # This service depends on mysql. Start that first.
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/digitalbank
+      SPRING_DATASOURCE_USERNAME: dev
+      SPRING_DATASOURCE_PASSWORD: root     
+    networks:
+      - backend
+
+  # Database Service (Mysql)
+  mysql:
+    image: mysql:5.6
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: digitalbank
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - backend
+  
+# Volumes
+volumes:
+  mysql-data:
+
+# Networks to be created to facilitate communication between containers
+networks:
+  backend:
