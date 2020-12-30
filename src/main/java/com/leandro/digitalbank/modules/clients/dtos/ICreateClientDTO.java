@@ -1,6 +1,6 @@
-package com.leandro.digitalbank.modules.client.dtos;
+package com.leandro.digitalbank.modules.clients.dtos;
 
-public class CreateClientDTO {
+public class ICreateClientDTO {
 	private String firstName;
 	private String lastName;
 	private String email;
