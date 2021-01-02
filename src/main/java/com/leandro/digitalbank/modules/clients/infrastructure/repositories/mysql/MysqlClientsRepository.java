@@ -22,7 +22,7 @@ public class MysqlClientsRepository implements IClientsRepository {
   }
 
   @Override
-  public Optional<Client> findById(final Long id) {
+  public Optional<Client> findById(final String id) {
     return clientsRepository.findById(id);
   }
 
@@ -37,8 +37,8 @@ public class MysqlClientsRepository implements IClientsRepository {
   }
 
   @Override
-  public void delete(Long id) {
-    clientsRepository.deleteById(id);
+  public void delete(Client client) {
+    clientsRepository.delete(client);
   }
 
   /**

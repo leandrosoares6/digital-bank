@@ -1,0 +1,5 @@
+spring:
+  autoconfigure:
+    exclude:
+    - org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration

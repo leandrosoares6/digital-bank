@@ -5,10 +5,10 @@ import java.util.Optional;
 import com.leandro.digitalbank.modules.clients.domain.entities.Client;
 
 public interface IClientsRepository {
-	Optional<Client> findById(Long id);
+	Optional<Client> findById(String id);
 	List<Client> findAllClients();
 	void save(Client client);
-	void delete(Long id);
+	void delete(Client client);
 	boolean existsByEmail(String email);
 	boolean existsByCpf(String cpf);
 }

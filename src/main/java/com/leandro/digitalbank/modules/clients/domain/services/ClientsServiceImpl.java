@@ -1,6 +1,7 @@
 package com.leandro.digitalbank.modules.clients.domain.services;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.leandro.digitalbank.modules.clients.domain.dtos.IClientDTO;
 import com.leandro.digitalbank.modules.clients.domain.entities.Client;
@@ -15,7 +16,7 @@ public class ClientsServiceImpl implements IClientsService {
   }
 
   @Override
-  public Long createClient(IClientDTO clientDTO) {
+  public String createClient(IClientDTO clientDTO) {
     var existsByEmail = clientsRepository.existsByEmail(clientDTO.getEmail());
 
     if (existsByEmail) {
@@ -29,6 +30,7 @@ public class ClientsServiceImpl implements IClientsService {
     }
 
     final Client client = new Client();
+    client.setId(UUID.randomUUID().toString());
     client.setFirstName(clientDTO.getFirstName());
     client.setLastName(clientDTO.getLastName());
     client.setEmail(clientDTO.getEmail());
@@ -44,13 +46,13 @@ public class ClientsServiceImpl implements IClientsService {
   }
 
   @Override
-  public Client showClient(Long id) {
+  public Client showClient(String id) {
     return clientsRepository
     .findById(id)
     .orElseThrow(() -> new AppError("Client not found"));
   }
   @Override
-  public void updateClient(Long id, IClientDTO clientDTO) {
+  public void updateClient(String id, IClientDTO clientDTO) {
     Client client = clientsRepository
       .findById(id)
       .orElseThrow(() -> new AppError("Client not found"));
@@ -65,11 +67,11 @@ public class ClientsServiceImpl implements IClientsService {
   }
 
   @Override
-  public void deleteClient(Long id) {
-    clientsRepository
+  public void deleteClient(String id) {
+    Client client = clientsRepository
       .findById(id)
       .orElseThrow(() -> new AppError("Client not found"));
 
-    clientsRepository.delete(id);
+    clientsRepository.delete(client);
   }
 }
