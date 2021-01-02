@@ -8,6 +8,7 @@ import com.leandro.digitalbank.modules.clients.repositories.IClientsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -38,5 +39,26 @@ public class MysqlClientsRepository implements IClientsRepository {
   @Override
   public void delete(Long id) {
     clientsRepository.deleteById(id);
+  }
+
+  /**
+   * Example of use Exists with Example<T>
+   */
+  @Override
+  public boolean existsByEmail(String email) {
+    Client client = new Client();
+    client.setEmail(email);
+
+    Example<Client> clientExample = Example.of(client);
+
+    return clientsRepository.exists(clientExample);
+  }
+
+  /**
+   * Example of use Exists with JPQL
+   */
+  @Override
+  public boolean existsByCpf(String cpf) {
+    return clientsRepository.existsByCpf(cpf);
   }
 }

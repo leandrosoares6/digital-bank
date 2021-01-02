@@ -9,4 +9,6 @@ public interface IClientsRepository {
 	List<Client> findAllClients();
 	void save(Client client);
 	void delete(Long id);
+	boolean existsByEmail(String email);
+	boolean existsByCpf(String cpf);
 }

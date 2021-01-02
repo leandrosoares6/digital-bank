@@ -16,6 +16,18 @@ public class ClientsServiceImpl implements IClientsService {
 
   @Override
   public Long createClient(IClientDTO clientDTO) {
+    var existsByEmail = clientsRepository.existsByEmail(clientDTO.getEmail());
+
+    if (existsByEmail) {
+      throw new AppError("Email already in use.");
+    }
+
+    var existsByCpf = clientsRepository.existsByCpf(clientDTO.getCpf());
+
+    if (existsByCpf) {
+      throw new AppError("Client with specified CPF already in use.");
+    }
+
     final Client client = new Client();
     client.setFirstName(clientDTO.getFirstName());
     client.setLastName(clientDTO.getLastName());
