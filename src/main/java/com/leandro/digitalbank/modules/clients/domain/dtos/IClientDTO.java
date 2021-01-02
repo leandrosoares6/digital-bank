@@ -4,6 +4,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 public class IClientDTO {
 	@NotBlank
 	@Size(max = 20)
@@ -20,6 +22,7 @@ public class IClientDTO {
 
 	@NotBlank
 	@Size(max = 11)
+	@CPF
 	private String cpf;
 
 	@NotBlank
