@@ -1,12 +1,12 @@
-package com.leandro.digitalbank.modules.clients.infrastructure.http.controllers;
+package com.leandro.digitalbank.modules.clients.application.rest.controllers;
 
 import java.util.List;
 
 import javax.validation.Valid;
 
-import com.leandro.digitalbank.modules.clients.dtos.IClientDTO;
+import com.leandro.digitalbank.modules.clients.domain.dtos.IClientDTO;
 import com.leandro.digitalbank.modules.clients.infrastructure.persistance.entities.Client;
-import com.leandro.digitalbank.modules.clients.services.IClientsService;
+import com.leandro.digitalbank.modules.clients.domain.services.IClientsService;
 import com.leandro.digitalbank.shared.exceptions.AppError;
 
 import org.springframework.http.HttpStatus;
