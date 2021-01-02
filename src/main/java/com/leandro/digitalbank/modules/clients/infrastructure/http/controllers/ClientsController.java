@@ -4,14 +4,11 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.leandro.digitalbank.modules.clients.dtos.IClientDTO;
 import com.leandro.digitalbank.modules.clients.infrastructure.persistance.entities.Client;
-import com.leandro.digitalbank.modules.clients.usecases.CreateClient;
-import com.leandro.digitalbank.modules.clients.usecases.DeleteClient;
-import com.leandro.digitalbank.modules.clients.usecases.ListClients;
-import com.leandro.digitalbank.modules.clients.usecases.ShowClient;
-import com.leandro.digitalbank.modules.clients.usecases.UpdateClient;
+import com.leandro.digitalbank.modules.clients.services.IClientsService;
+import com.leandro.digitalbank.shared.exceptions.AppError;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -29,50 +26,51 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/clients")
 @Validated
 public class ClientsController {
-	
-	@Autowired
-	private ListClients list;
 
-	@Autowired
-	private CreateClient create;
+	private final IClientsService clientsService;
 
-	@Autowired
-	private UpdateClient update;
-
-	@Autowired
-	private ShowClient show;
-
-	@Autowired
-	private DeleteClient delete;
+	public ClientsController(IClientsService clientsService) {
+		this.clientsService = clientsService;
+	}
 
 	@GetMapping
 	public List<Client> index() {
-		return list.execute();
+		return clientsService.listClients();
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Client> show(@PathVariable Long id) {
-		return show.execute(id);
+		try {
+			Client client = clientsService.showClient(id);
+			return ResponseEntity.ok(client);
+		} catch (AppError e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
-	
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Client create(
-	 @Valid	@RequestBody Client client
-	) {
-		return create.execute(client);
+	public Long create(@Valid @RequestBody IClientDTO clientDTO) {
+		return clientsService.createClient(clientDTO);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Client> update(
-		@Valid @PathVariable Long id,
-		@RequestBody Client client
-	) {
-		return update.execute(id, client);
+	public ResponseEntity<Client> update(@Valid @PathVariable Long id, @RequestBody IClientDTO client) {
+		try {
+			clientsService.updateClient(id, client);
+			return ResponseEntity.noContent().build();
+		} catch (AppError e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
-		return delete.execute(id);
+		try {
+			clientsService.deleteClient(id);
+			return ResponseEntity.noContent().build();
+		} catch (AppError e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }
