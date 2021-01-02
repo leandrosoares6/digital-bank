@@ -2,7 +2,7 @@ package com.leandro.digitalbank.modules.clients.services;
 
 import java.util.List;
 
-import com.leandro.digitalbank.modules.clients.dtos.ClientDTO;
+import com.leandro.digitalbank.modules.clients.dtos.IClientDTO;
 import com.leandro.digitalbank.modules.clients.infrastructure.persistance.entities.Client;
 import com.leandro.digitalbank.modules.clients.repositories.IClientsRepository;
 import com.leandro.digitalbank.shared.exceptions.AppError;
@@ -15,7 +15,7 @@ public class ClientsServiceImpl implements IClientsService {
   }
 
   @Override
-  public Long createClient(ClientDTO clientDTO) {
+  public Long createClient(IClientDTO clientDTO) {
     final Client client = new Client();
     client.setFirstName(clientDTO.getFirstName());
     client.setLastName(clientDTO.getLastName());
@@ -38,7 +38,7 @@ public class ClientsServiceImpl implements IClientsService {
     .orElseThrow(() -> new AppError("Client not found"));
   }
   @Override
-  public void updateClient(Long id, ClientDTO clientDTO) {
+  public void updateClient(Long id, IClientDTO clientDTO) {
     Client client = clientsRepository
       .findById(id)
       .orElseThrow(() -> new AppError("Client not found"));
