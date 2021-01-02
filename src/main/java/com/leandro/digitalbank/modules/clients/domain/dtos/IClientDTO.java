@@ -1,4 +1,4 @@
-package com.leandro.digitalbank.modules.clients.dtos;
+package com.leandro.digitalbank.modules.clients.domain.dtos;
 
 import javax.validation.constraints.NotBlank;
 

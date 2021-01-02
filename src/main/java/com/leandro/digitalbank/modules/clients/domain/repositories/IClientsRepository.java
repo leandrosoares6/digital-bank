@@ -1,4 +1,4 @@
-package com.leandro.digitalbank.modules.clients.repositories;
+package com.leandro.digitalbank.modules.clients.domain.repositories;
 import java.util.List;
 import java.util.Optional;
 
