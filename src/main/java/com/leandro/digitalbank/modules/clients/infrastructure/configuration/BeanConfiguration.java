@@ -1,9 +1,9 @@
 package com.leandro.digitalbank.modules.clients.infrastructure.configuration;
 
 import com.leandro.digitalbank.DigitalBankApplication;
-import com.leandro.digitalbank.modules.clients.repositories.IClientsRepository;
-import com.leandro.digitalbank.modules.clients.services.ClientsServiceImpl;
-import com.leandro.digitalbank.modules.clients.services.IClientsService;
+import com.leandro.digitalbank.modules.clients.domain.repositories.IClientsRepository;
+import com.leandro.digitalbank.modules.clients.domain.services.ClientsServiceImpl;
+import com.leandro.digitalbank.modules.clients.domain.services.IClientsService;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

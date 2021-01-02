@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.leandro.digitalbank.modules.clients.infrastructure.persistance.entities.Client;
-import com.leandro.digitalbank.modules.clients.repositories.IClientsRepository;
+import com.leandro.digitalbank.modules.clients.domain.repositories.IClientsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
