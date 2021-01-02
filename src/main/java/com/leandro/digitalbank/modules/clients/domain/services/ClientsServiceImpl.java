@@ -3,7 +3,7 @@ package com.leandro.digitalbank.modules.clients.domain.services;
 import java.util.List;
 
 import com.leandro.digitalbank.modules.clients.domain.dtos.IClientDTO;
-import com.leandro.digitalbank.modules.clients.infrastructure.persistance.entities.Client;
+import com.leandro.digitalbank.modules.clients.domain.entities.Client;
 import com.leandro.digitalbank.modules.clients.domain.repositories.IClientsRepository;
 import com.leandro.digitalbank.shared.exceptions.AppError;
 

@@ -1,6 +1,6 @@
 package com.leandro.digitalbank.modules.clients.infrastructure.repositories.mysql;
 
-import com.leandro.digitalbank.modules.clients.infrastructure.persistance.entities.Client;
+import com.leandro.digitalbank.modules.clients.domain.entities.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

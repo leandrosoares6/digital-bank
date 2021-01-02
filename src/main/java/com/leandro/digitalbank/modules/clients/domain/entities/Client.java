@@ -1,4 +1,4 @@
-package com.leandro.digitalbank.modules.clients.infrastructure.persistance.entities;
+package com.leandro.digitalbank.modules.clients.domain.entities;
 
 import java.io.Serializable;
 

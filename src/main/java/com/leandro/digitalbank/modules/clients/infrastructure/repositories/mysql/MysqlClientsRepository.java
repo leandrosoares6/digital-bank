@@ -3,7 +3,7 @@ package com.leandro.digitalbank.modules.clients.infrastructure.repositories.mysq
 import java.util.List;
 import java.util.Optional;
 
-import com.leandro.digitalbank.modules.clients.infrastructure.persistance.entities.Client;
+import com.leandro.digitalbank.modules.clients.domain.entities.Client;
 import com.leandro.digitalbank.modules.clients.domain.repositories.IClientsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
